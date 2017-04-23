@@ -3,7 +3,7 @@ from setuptools import setup, Extension
 from sys import platform
 import os
 
-incl = ['./msdf/source', './msdf/source/include', './msdf/source/include/freetype']
+incl = ['./msdf/msdfgen', './msdf/msdfgen/include', './msdf/msdfgen/include/freetype']
 extrac = []
 sourceFiles = ["msdf/gen.pyx"]
 
@@ -52,4 +52,5 @@ setup(ext_modules=[Extension('msdf.gen', getSourceFiles(), include_dirs=incl,
         license='MIT',
         author='JR-García',
         author_email='biocratos@yahoo.com.mx',
-        description='Basic bindings for Multichannel signed distance field generator')
+        description='Basic bindings for Multichannel signed distance field generator',
+        install_requires=['cython'])
