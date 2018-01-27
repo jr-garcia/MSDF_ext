@@ -60,5 +60,5 @@ venv/
 ENV/
 .spyderproject
 .ropeproject
-*.cpp
+
 /.idea/
