@@ -4,23 +4,23 @@ from sys import platform
 import os
 
 incl = ['./msdf/msdfgen', './msdf/msdfgen/include', './msdf/msdfgen/include/freetype']
-extrac = []
+extraComp = []
 sourceFiles = ["msdf/gen.pyx"]
 
 ignoredSources = ['save-bmp.cpp', 'render-sdf.cpp', 'import-svg.cpp']
 
 if platform == 'win32':
     rldirs = []
-    extrac.extend(['/EHsc', '/openmp'])
-    extraArgs = ['/openmp']
+    extraComp.extend(['/EHsc', '/openmp'])
+    extraLink = []
 elif platform == 'darwin':
     rldirs = []
-    extrac.append('-fopenmp')
-    extraArgs = ['-fopenmp']
+    extraComp.append('-fopenmp')
+    extraLink = ['-fopenmp']
 else:
-    extraArgs = ['-fopenmp']
+    extraLink = ['-fopenmp']
     rldirs = ["$ORIGIN"]
-    extrac.extend(["-w", "-O3", '-fopenmp'])
+    extraComp.extend(["-w", "-O3", '-fopenmp'])
 
 
 def addValidSources(loc):
@@ -43,7 +43,7 @@ def getSourceFiles():
 
 
 setup(ext_modules=[Extension('msdf.gen', getSourceFiles(), include_dirs=incl,
-                             extra_link_args=extraArgs, extra_compile_args=extrac,
+                             extra_link_args=extraLink, extra_compile_args=extraComp,
                              libraries=['freetype'], language="c++")],
         name='MSDF_ext',
         version='0.1',
@@ -53,4 +53,5 @@ setup(ext_modules=[Extension('msdf.gen', getSourceFiles(), include_dirs=incl,
         author='JR-García',
         author_email='biocratos@yahoo.com.mx',
         description='Basic bindings for Multichannel signed distance field generator',
-        install_requires=['cython'])
+        # install_requires=['cython']
+      )

@@ -1,5 +1,5 @@
 # MSDF_ext
-Basic Python bindings for [Multi-channel signed distance field generator ](https://github.com/Chlumsky/msdfgen)
+Basic Python bindings for [Multi-channel signed distance field generator ](https://github.com/Chlumsky/msdfgen).
 
 ## Install
 This proyect uses submodules, so clone like this:
